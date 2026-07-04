@@ -28,9 +28,13 @@ import androidx.compose.ui.unit.sp
 import com.example.data.CategoryEntity
 import com.example.data.TransactionEntity
 import com.example.data.WalletEntity
+import com.example.data.MathUtils
 import com.example.ui.theme.ExpenseRed
 import com.example.ui.theme.GrowthGreen
 import com.example.ui.theme.ZaloBlue
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import java.util.Calendar
 
 // --- MÀN HÌNH DANH SÁCH GIAO DỊCH ---
 @OptIn(ExperimentalMaterial3Api::class)
@@ -312,7 +316,7 @@ fun AddEditTransactionScreen(
                         viewModel.onAmountChange("0")
                     },
                     onDone = {
-                        val result = evaluateMathExpression(expr)
+                        val result = MathUtils.evaluate(expr)
                         expr = if (result % 1 == 0.0) {
                             result.toLong().toString()
                         } else {
@@ -329,7 +333,8 @@ fun AddEditTransactionScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
-                .padding(16.dp),
+                .padding(16.dp)
+                .verticalScroll(rememberScrollState()),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             // Nhập số tiền lớn (Click hiện Custom Keyboard, chặn phím ảo hệ thống)
@@ -497,60 +502,76 @@ fun BudgetScreen(
 ) {
     val budgets by viewModel.budgets.collectAsState()
     val categories by viewModel.categories.collectAsState()
+    val wallets by viewModel.wallets.collectAsState()
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
-    ) {
-        Text(text = "Lập ngân sách & Hạn mức", fontWeight = FontWeight.Bold, fontSize = 20.sp)
+    var showAddDialog by remember { mutableStateOf(false) }
 
-        if (budgets.isEmpty()) {
-            Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                Text(text = "Bạn chưa đặt hạn mức chi tiêu nào.", color = Color.Gray)
-            }
-        } else {
-            LazyColumn(
-                verticalArrangement = Arrangement.spacedBy(16.dp)
+    Scaffold(
+        floatingActionButton = {
+            FloatingActionButton(
+                onClick = { showAddDialog = true },
+                containerColor = ZaloBlue,
+                contentColor = Color.White
             ) {
-                items(budgets) { budget ->
-                    val category = categories.find { it.id == budget.categoryId }
-                    val percent = if (budget.amount > 0.0) (budget.spent / budget.amount) else 0.0
-                    val color = if (percent >= 1.0) ExpenseRed else if (percent >= 0.8) Color(0xFFF39C12) else GrowthGreen
+                Icon(Icons.Default.Add, contentDescription = "Thêm ngân sách")
+            }
+        }
+    ) { paddingValues ->
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(paddingValues)
+                .padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp)
+        ) {
+            Text(text = "Lập ngân sách & Hạn mức", fontWeight = FontWeight.Bold, fontSize = 20.sp)
 
-                    Card(
-                        modifier = Modifier.fillMaxWidth(),
-                        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
-                    ) {
-                        Column(modifier = Modifier.padding(16.dp)) {
-                            Text(
-                                text = "Hạn mức: ${category?.name ?: "Tất cả"}",
-                                fontWeight = FontWeight.Bold,
-                                fontSize = 16.sp
-                            )
-                            Spacer(modifier = Modifier.height(8.dp))
-                            LinearProgressIndicator(
-                                progress = percent.toFloat().coerceAtMost(1f),
-                                modifier = Modifier.fillMaxWidth(),
-                                color = color,
-                                trackColor = color.copy(alpha = 0.2f)
-                            )
-                            Spacer(modifier = Modifier.height(8.dp))
-                            Row(
-                                modifier = Modifier.fillMaxWidth(),
-                                horizontalArrangement = Arrangement.SpaceBetween
-                            ) {
+            if (budgets.isEmpty()) {
+                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                    Text(text = "Bạn chưa đặt hạn mức chi tiêu nào.", color = Color.Gray)
+                }
+            } else {
+                LazyColumn(
+                    verticalArrangement = Arrangement.spacedBy(16.dp)
+                ) {
+                    items(budgets) { budget ->
+                        val category = categories.find { it.id == budget.categoryId }
+                        val percent = if (budget.amount > 0.0) (budget.spent / budget.amount) else 0.0
+                        val color = if (percent >= 1.0) ExpenseRed else if (percent >= 0.8) Color(0xFFF39C12) else GrowthGreen
+
+                        Card(
+                            modifier = Modifier.fillMaxWidth(),
+                            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
+                        ) {
+                            Column(modifier = Modifier.padding(16.dp)) {
                                 Text(
-                                    text = String.format("Đã tiêu: %,.0fđ", budget.spent),
-                                    fontSize = 12.sp,
-                                    color = Color.Gray
+                                    text = "Hạn mức: ${category?.name ?: "Tất cả"}",
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 16.sp
                                 )
-                                Text(
-                                    text = String.format("Hạn mức: %,.0fđ", budget.amount),
-                                    fontSize = 12.sp,
-                                    color = Color.Gray
+                                Spacer(modifier = Modifier.height(8.dp))
+                                LinearProgressIndicator(
+                                    progress = percent.toFloat().coerceAtMost(1f),
+                                    modifier = Modifier.fillMaxWidth(),
+                                    color = color,
+                                    trackColor = color.copy(alpha = 0.2f)
                                 )
+                                Spacer(modifier = Modifier.height(8.dp))
+                                Row(
+                                    modifier = Modifier.fillMaxWidth(),
+                                    horizontalArrangement = Arrangement.SpaceBetween
+                                ) {
+                                    Text(
+                                        text = String.format("Đã tiêu: %,.0fđ", budget.spent),
+                                        fontSize = 12.sp,
+                                        color = Color.Gray
+                                    )
+                                    Text(
+                                        text = String.format("Hạn mức: %,.0fđ", budget.amount),
+                                        fontSize = 12.sp,
+                                        color = Color.Gray
+                                    )
+                                }
                             }
                         }
                     }
@@ -558,6 +579,132 @@ fun BudgetScreen(
             }
         }
     }
+
+    if (showAddDialog) {
+        val calStart = Calendar.getInstance().apply {
+            set(Calendar.DAY_OF_MONTH, 1)
+            set(Calendar.HOUR_OF_DAY, 0)
+            set(Calendar.MINUTE, 0)
+            set(Calendar.SECOND, 0)
+        }
+        val calEnd = Calendar.getInstance().apply {
+            set(Calendar.DAY_OF_MONTH, getActualMaximum(Calendar.DAY_OF_MONTH))
+            set(Calendar.HOUR_OF_DAY, 23)
+            set(Calendar.MINUTE, 59)
+            set(Calendar.SECOND, 59)
+        }
+        AddBudgetDialog(
+            categories = categories,
+            wallets = wallets,
+            onDismiss = { showAddDialog = false },
+            onSave = { walletId, categoryId, amount ->
+                viewModel.createBudget(walletId, categoryId, amount, calStart.timeInMillis, calEnd.timeInMillis)
+                showAddDialog = false
+            }
+        )
+    }
+}
+
+// Dialog Thêm ngân sách mới
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun AddBudgetDialog(
+    categories: List<CategoryEntity>,
+    wallets: List<WalletEntity>,
+    onDismiss: () -> Unit,
+    onSave: (walletId: Long, categoryId: Long, amount: Double) -> Unit
+) {
+    var selectedCategory by remember { mutableStateOf<CategoryEntity?>(null) }
+    var selectedWallet by remember { mutableStateOf<WalletEntity?>(null) }
+    var amount by remember { mutableStateOf("") }
+    
+    var showCategoryMenu by remember { mutableStateOf(false) }
+    var showWalletMenu by remember { mutableStateOf(false) }
+
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text("Thêm hạn mức chi tiêu") },
+        text = {
+            Column(
+                verticalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+                // Chọn Ví
+                Box(modifier = Modifier.fillMaxWidth()) {
+                    OutlinedButton(
+                        onClick = { showWalletMenu = true },
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Text(selectedWallet?.name ?: "Áp dụng cho Ví")
+                    }
+                    DropdownMenu(
+                        expanded = showWalletMenu,
+                        onDismissRequest = { showWalletMenu = false }
+                    ) {
+                        wallets.forEach { wallet ->
+                            DropdownMenuItem(
+                                text = { Text(wallet.name) },
+                                onClick = {
+                                    selectedWallet = wallet
+                                    showWalletMenu = false
+                                }
+                            )
+                        }
+                    }
+                }
+
+                // Chọn Danh mục
+                Box(modifier = Modifier.fillMaxWidth()) {
+                    OutlinedButton(
+                        onClick = { showCategoryMenu = true },
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Text(selectedCategory?.name ?: "Áp dụng cho Danh mục")
+                    }
+                    DropdownMenu(
+                        expanded = showCategoryMenu,
+                        onDismissRequest = { showCategoryMenu = false }
+                    ) {
+                        categories.filter { it.type == "EXPENSE" }.forEach { category ->
+                            DropdownMenuItem(
+                                text = { Text(category.name) },
+                                onClick = {
+                                    selectedCategory = category
+                                    showCategoryMenu = false
+                                }
+                            )
+                        }
+                    }
+                }
+
+                // Nhập số tiền
+                OutlinedTextField(
+                    value = amount,
+                    onValueChange = { amount = it },
+                    label = { Text("Hạn mức (VND)") },
+                    modifier = Modifier.fillMaxWidth(),
+                    singleLine = true
+                )
+            }
+        },
+        confirmButton = {
+            Button(
+                onClick = {
+                    val amt = amount.toDoubleOrNull() ?: 0.0
+                    if (selectedWallet != null && selectedCategory != null && amt > 0.0) {
+                        onSave(selectedWallet!!.id, selectedCategory!!.id, amt)
+                    }
+                },
+                enabled = selectedWallet != null && selectedCategory != null && (amount.toDoubleOrNull() ?: 0.0) > 0.0
+            ) {
+                Text("Lưu")
+            }
+        },
+        dismissButton = {
+            TextButton(onClick = onDismiss) {
+                Text("Hủy")
+            }
+        }
+    )
 }
 
 // --- MÀN HÌNH BÁO CÁO THỐNG KÊ (PIE CHART VẼ BẰNG CANVAS) ---
@@ -696,78 +843,5 @@ fun CustomCalculatorKeyboard(
     }
 }
 
-// Bộ tính toán biểu thức toán học đệ quy
-fun evaluateMathExpression(expr: String): Double {
-    if (expr.isBlank()) return 0.0
-    val clean = expr.replace(",", "").trim()
-    
-    return try {
-        object : Any() {
-            var pos = -1
-            var ch = 0
+// Bộ tính toán biểu thức toán học đệ quy đã được chuyển sang MathUtils.evaluate
 
-            fun nextChar() {
-                ch = if (++pos < clean.length) clean[pos].code else -1
-            }
-
-            fun eat(charToEat: Int): Boolean {
-                while (ch == ' '.code) nextChar()
-                if (ch == charToEat) {
-                    nextChar()
-                    return true
-                }
-                return false
-            }
-
-            fun parse(): Double {
-                nextChar()
-                val x = parseExpression()
-                if (pos < clean.length) throw RuntimeException("Unexpected: " + ch.toChar())
-                return x
-            }
-
-            fun parseExpression(): Double {
-                var x = parseTerm()
-                while (true) {
-                    if (eat('+'.code)) x += parseTerm()
-                    else if (eat('-'.code)) x -= parseTerm()
-                    else break
-                }
-                return x
-            }
-
-            fun parseTerm(): Double {
-                var x = parseFactor()
-                while (true) {
-                    if (eat('*'.code)) x *= parseFactor()
-                    else if (eat('/'.code)) {
-                        val divisor = parseFactor()
-                        x /= if (divisor == 0.0) 1.0 else divisor
-                    }
-                    else break
-                }
-                return x
-            }
-
-            fun parseFactor(): Double {
-                if (eat('+'.code)) return parseFactor()
-                if (eat('-'.code)) return -parseFactor()
-
-                var x: Double
-                val startPos = this.pos
-                if (eat('('.code)) {
-                    x = parseExpression()
-                    eat(')'.code)
-                } else if (ch >= '0'.code && ch <= '9'.code || ch == '.'.code) {
-                    while (ch >= '0'.code && ch <= '9'.code || ch == '.'.code) nextChar()
-                    x = clean.substring(startPos, this.pos).toDouble()
-                } else {
-                    throw RuntimeException("Unexpected: " + ch.toChar())
-                }
-                return x
-            }
-        }.parse()
-    } catch (e: Exception) {
-        0.0
-    }
-}

@@ -8,6 +8,9 @@ interface WalletDao {
     @Query("SELECT * FROM wallets")
     fun getAllWallets(): Flow<List<WalletEntity>>
 
+    @Query("SELECT * FROM wallets")
+    suspend fun getAllWalletsSync(): List<WalletEntity>
+
     @Query("SELECT * FROM wallets WHERE id = :id")
     suspend fun getWalletById(id: Long): WalletEntity?
 
@@ -28,6 +31,9 @@ interface WalletDao {
 interface CategoryDao {
     @Query("SELECT * FROM categories")
     fun getAllCategories(): Flow<List<CategoryEntity>>
+
+    @Query("SELECT * FROM categories")
+    suspend fun getAllCategoriesSync(): List<CategoryEntity>
 
     @Query("SELECT * FROM categories WHERE type = :type")
     fun getCategoriesByType(type: String): Flow<List<CategoryEntity>>

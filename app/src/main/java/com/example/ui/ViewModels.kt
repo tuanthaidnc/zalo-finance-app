@@ -132,7 +132,7 @@ class AddEditTransactionViewModel(
     val isValid: StateFlow<Boolean> = combine(
         _amount, _selectedWallet, _selectedCategory, _selectedTransferWallet
     ) { amt, wallet, cat, transWallet ->
-        val amtVal = amt.toDoubleOrNull() ?: 0.0
+        val amtVal = MathUtils.evaluate(amt)
         val baseValid = amtVal > 0.0 && wallet != null && cat != null
         if (cat?.type == "TRANSFER") {
             baseValid && transWallet != null && transWallet.id != wallet?.id
@@ -151,7 +151,7 @@ class AddEditTransactionViewModel(
     fun saveTransaction(onSuccess: () -> Unit) {
         viewModelScope.launch {
             if (isValid.value) {
-                val amtVal = _amount.value.toDoubleOrNull() ?: 0.0
+                val amtVal = MathUtils.evaluate(_amount.value)
                 val transaction = TransactionEntity(
                     walletId = _selectedWallet.value!!.id,
                     categoryId = _selectedCategory.value!!.id,
