@@ -20,6 +20,7 @@ import com.example.data.*
 import com.example.ui.*
 import com.example.ui.theme.ZaloFinanceTheme
 import com.example.ui.theme.ZaloBlue
+import com.example.ui.theme.GrowthGreen
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.Alignment
@@ -195,7 +196,7 @@ fun SettingsScreen(
         }
 
         Spacer(modifier = Modifier.height(32.dp))
-        HorizontalDivider()
+        Divider()
         Spacer(modifier = Modifier.height(16.dp))
 
         Text(text = "Nhập dữ liệu cũ", fontWeight = FontWeight.Bold, fontSize = 20.sp)
