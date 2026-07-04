@@ -16,6 +16,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 import com.example.data.*
 import com.example.ui.*
 import com.example.ui.theme.ZaloFinanceTheme
@@ -53,6 +54,24 @@ class MainActivity : ComponentActivity() {
         walletRepository = WalletRepositoryImpl(appDatabase.walletDao())
         categoryRepository = CategoryRepositoryImpl(appDatabase.categoryDao())
         budgetRepository = BudgetRepositoryImpl(appDatabase.budgetDao())
+
+        // Tự động nạp dữ liệu cũ từ Assets khi chạy lần đầu
+        val prefs = getSharedPreferences("zalo_finance_prefs", MODE_PRIVATE)
+        val isImported = prefs.getBoolean("is_money_lover_imported", false)
+        if (!isImported) {
+            lifecycleScope.launch(Dispatchers.IO) {
+                try {
+                    val inputStream = assets.open("money_lover_export.csv")
+                    val dtoList = CsvParser.parse(inputStream)
+                    if (dtoList.isNotEmpty()) {
+                        transactionRepository.importTransactionsFromCsv(dtoList)
+                        prefs.edit().putBoolean("is_money_lover_imported", true).apply()
+                    }
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            }
+        }
 
         setContent {
             ZaloFinanceTheme {
@@ -123,6 +142,14 @@ class MainActivity : ComponentActivity() {
                                     onEnableSyncClick = { checkAndRequestNotificationPermission() },
                                     importState = importState,
                                     onImportClick = { stream -> listViewModel.importFromCsv(stream) },
+                                    onImportAssetsClick = { 
+                                        try {
+                                            val stream = assets.open("money_lover_export.csv")
+                                            listViewModel.importFromCsv(stream)
+                                        } catch (e: Exception) {
+                                            listViewModel.resetImportState()
+                                        }
+                                    },
                                     onResetImportState = { listViewModel.resetImportState() }
                                 )
                             }
@@ -155,6 +182,7 @@ fun SettingsScreen(
     onEnableSyncClick: () -> Unit,
     importState: String,
     onImportClick: (InputStream) -> Unit,
+    onImportAssetsClick: () -> Unit,
     onResetImportState: () -> Unit
 ) {
     val context = LocalContext.current
@@ -202,16 +230,28 @@ fun SettingsScreen(
         Text(text = "Nhập dữ liệu cũ", fontWeight = FontWeight.Bold, fontSize = 20.sp)
         Spacer(modifier = Modifier.height(16.dp))
         Text(
-            text = "Bạn có thể chuyển dữ liệu lịch sử từ Money Lover sang ZaloFinance bằng cách chọn tệp CSV đã xuất từ Money Lover.",
+            text = "Bạn có thể chọn tệp CSV đã xuất từ Money Lover trên thiết bị hoặc đồng bộ trực tiếp từ tệp dữ liệu Money Lover tích hợp sẵn trong ứng dụng.",
             color = Color.Gray,
             fontSize = 14.sp
         )
         Spacer(modifier = Modifier.height(16.dp))
-        Button(
-            onClick = { launcher.launch("*/*") }, // Chọn file bất kỳ để hỗ trợ mọi kiểu đuôi CSV
-            colors = ButtonDefaults.buttonColors(containerColor = GrowthGreen)
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            Text("Nhập tệp CSV từ Money Lover")
+            Button(
+                onClick = { launcher.launch("*/*") },
+                colors = ButtonDefaults.buttonColors(containerColor = GrowthGreen),
+                modifier = Modifier.weight(1f)
+            ) {
+                Text("Chọn tệp CSV")
+            }
+            Button(
+                onClick = onImportAssetsClick,
+                colors = ButtonDefaults.buttonColors(containerColor = ZaloBlue),
+                modifier = Modifier.weight(1f)
+            ) {
+                Text("Đồng bộ tích hợp")
+            }
         }
     }
 

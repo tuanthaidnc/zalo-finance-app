@@ -1,0 +1,389 @@
+﻿ID,Note,Amount,Category,Account,Currency,Date,Event,Exclude Report
+1,,-20000,Ăn uống,Tiền mặt,VND,03/07/2026,,False
+2,,-2000,Di chuyển,Tiền mặt,VND,03/07/2026,,False
+3,,-50000,Di chuyển,Tiền mặt,VND,03/07/2026,,False
+4,,-60000,Ăn uống,Tiền mặt,VND,02/07/2026,,False
+5,,-38000,Ăn uống,ZaloPay,VND,02/07/2026,,False
+6,,60000,Thu nhập khác,ZaloPay,VND,02/07/2026,,False
+7,,-14000,Ăn uống,Tiền mặt,VND,01/07/2026,,False
+8,,-60000,Ăn uống,Tiền mặt,VND,01/07/2026,,False
+9,,-45000,Giải trí,ZaloPay,VND,01/07/2026,,False
+10,,-23000,Ăn uống,Tiền mặt,VND,30/06/2026,,False
+11,,-50000,Di chuyển,Tiền mặt,VND,30/06/2026,,False
+12,,-115000,Ăn ngoài,Tiền mặt,VND,30/06/2026,,False
+13,,-30000,Ăn uống,ZaloPay,VND,29/06/2026,,False
+14,,50000,Thu nhập khác,ZaloPay,VND,29/06/2026,,False
+15,,-20000,Ăn uống,Tiền mặt,VND,28/06/2026,,False
+16,,-45000,Ăn uống,ZaloPay,VND,28/06/2026,,False
+17,,-40000,Ăn uống,Tiền mặt,VND,27/06/2026,,False
+18,,-90000,Ăn uống,ZaloPay,VND,26/06/2026,,False
+19,,-30000,Ăn uống,ZaloPay,VND,25/06/2026,,False
+20,,-50000,Ăn uống,ZaloPay,VND,24/06/2026,,False
+21,,-120000,Quà tặng & Quyên góp,ZaloPay,VND,24/06/2026,,False
+22,,50000,Thu nhập khác,ZaloPay,VND,24/06/2026,,False
+23,,40000,Thu nhập khác,Tiền mặt,VND,23/06/2026,,False
+24,,-80000,Ăn uống,ZaloPay,VND,23/06/2026,,False
+25,,-4000,Di chuyển,Tiền mặt,VND,22/06/2026,,False
+26,,-25000,Ăn uống,ZaloPay,VND,22/06/2026,,False
+27,,-52000,Di chuyển,ZaloPay,VND,22/06/2026,,False
+28,,-65000,Ăn ngoài,ZaloPay,VND,22/06/2026,,False
+29,,70000,Thu nhập khác,Tiền mặt,VND,21/06/2026,,False
+30,,-40000,Giải trí,ZaloPay,VND,21/06/2026,,False
+31,,-50000,Di chuyển,Tiền mặt,VND,20/06/2026,,False
+32,,-56000,Ăn ngoài,ZaloPay,VND,20/06/2026,,False
+33,,-35000,Ăn uống,ZaloPay,VND,19/06/2026,,False
+34,Nhận tiền từ ZaloPay,55000,Tiền chuyển đến,Tiền mặt,VND,18/06/2026,,True
+35,,-49000,Ăn uống,ZaloPay,VND,18/06/2026,,False
+36,,-21000,Giải trí,ZaloPay,VND,18/06/2026,,False
+37,Gửi đến Tiền mặt,-55000,Tiền chuyển đi,ZaloPay,VND,18/06/2026,,True
+38,,-16000,Ăn uống,Tiền mặt,VND,17/06/2026,,False
+39,,-40000,Di chuyển,Tiền mặt,VND,17/06/2026,,False
+40,,-4000,Di chuyển,Tiền mặt,VND,17/06/2026,,False
+41,,-65000,Ăn uống,ZaloPay,VND,17/06/2026,,False
+42,,-30000,Ăn uống,ZaloPay,VND,16/06/2026,,False
+43,,-54000,Ăn uống,ZaloPay,VND,15/06/2026,,False
+44,,-50000,Mua sắm,ZaloPay,VND,15/06/2026,,False
+45,,-50000,Di chuyển,Tiền mặt,VND,14/06/2026,,False
+46,,-28000,Ăn ngoài,Tiền mặt,VND,14/06/2026,,False
+47,,-915000,Ăn ngoài,ZaloPay,VND,14/06/2026,,False
+48,,-100000,Đầu tư,ZaloPay,VND,13/06/2026,,False
+49,,-35000,Ăn uống,Tiền mặt,VND,12/06/2026,,False
+50,,-30000,Ăn uống,ZaloPay,VND,12/06/2026,,False
+51,,56000,Thu nhập khác,ZaloPay,VND,12/06/2026,,False
+52,,-280000,Ăn uống,ZaloPay,VND,11/06/2026,,False
+53,,-45000,Ăn uống,ZaloPay,VND,11/06/2026,,False
+54,,-50000,Di chuyển,Tiền mặt,VND,10/06/2026,,False
+55,,-25000,Ăn uống,ZaloPay,VND,10/06/2026,,False
+56,,-30000,Ăn uống,ZaloPay,VND,10/06/2026,,False
+57,,-115000,Ăn ngoài,ZaloPay,VND,10/06/2026,,False
+58,,-80000,Ăn uống,ZaloPay,VND,09/06/2026,,False
+59,,-48000,Ăn uống,ZaloPay,VND,08/06/2026,,False
+60,,-25000,Ăn uống,ZaloPay,VND,08/06/2026,,False
+61,,-50000,Ăn uống,ZaloPay,VND,07/06/2026,,False
+62,,-60000,Vệ sinh cá nhân,Tiền mặt,VND,07/06/2026,,False
+63,,-80000,Vệ sinh cá nhân,ZaloPay,VND,07/06/2026,,False
+64,,-17000,Mua sắm,Tiền mặt,VND,06/06/2026,,False
+65,,-15000,Mua sắm,Tiền mặt,VND,06/06/2026,,False
+66,Nhận tiền từ ZaloPay,25000,Tiền chuyển đến,Tiền mặt,VND,06/06/2026,,True
+67,,-55000,Ăn uống,ZaloPay,VND,06/06/2026,,False
+68,Gửi đến Tiền mặt,-25000,Tiền chuyển đi,ZaloPay,VND,06/06/2026,,True
+69,,-350000,Ăn ngoài,ZaloPay,VND,06/06/2026,,False
+70,,-25000,Ăn uống,Tiền mặt,VND,05/06/2026,,False
+71,,-50000,Di chuyển,Tiền mặt,VND,05/06/2026,,False
+72,Điều chỉnh số dư,-24000,Các chi phí khác,Tiền mặt,VND,05/06/2026,,False
+73,Điều chỉnh số dư,-5000,Các chi phí khác,Tiền mặt,VND,05/06/2026,,False
+74,,800000,Lương,Tiền mặt,VND,05/06/2026,,False
+75,,-70000,Hoá đơn internet,ZaloPay,VND,05/06/2026,,False
+76,,-1000000,Gia đình,ZaloPay,VND,05/06/2026,,False
+77,,-67000,Giải trí,ZaloPay,VND,05/06/2026,,False
+78,,-100000,Quà tặng & Quyên góp,ZaloPay,VND,05/06/2026,,False
+79,Gửi đến Chứng Khoáng,-500000,Tiền chuyển đi,ZaloPay,VND,05/06/2026,,True
+80,Gửi đến Quỹ Khẩn Cấp,-3275000,Tiền chuyển đi,ZaloPay,VND,05/06/2026,,True
+81,Trả cho Em Yêu,-300000,Trả nợ,ZaloPay,VND,05/06/2026,,True
+82,Trả cho Em Yêu,-100000,Trả nợ,ZaloPay,VND,05/06/2026,,True
+83,,8500000,Lương,ZaloPay,VND,05/06/2026,,False
+84,Nhận tiền từ ZaloPay,500000,Tiền chuyển đến,Chứng Khoáng,VND,05/06/2026,,True
+85,Nhận tiền từ Quỹ Khẩn Cấp,500000,Tiền chuyển đến,Chứng Khoáng,VND,05/06/2026,,True
+86,Gửi đến Chứng Khoáng,-500000,Tiền chuyển đi,Quỹ Khẩn Cấp,VND,05/06/2026,,True
+87,Nhận tiền từ ZaloPay,3275000,Tiền chuyển đến,Quỹ Khẩn Cấp,VND,05/06/2026,,True
+88,,-10000,Ăn uống,Tiền mặt,VND,04/06/2026,,False
+89,,-63000,Ăn uống,Tiền mặt,VND,03/06/2026,,False
+90,,-74000,Ăn uống,ZaloPay,VND,01/06/2026,,False
+91,,-16000,Ăn uống,Tiền mặt,VND,31/05/2026,,False
+92,,-50000,Di chuyển,Tiền mặt,VND,31/05/2026,,False
+93,,100000,Đi vay,ZaloPay,VND,31/05/2026,,True
+94,,-115000,Ăn ngoài,ZaloPay,VND,31/05/2026,,False
+95,,-30000,Ăn uống,ZaloPay,VND,30/05/2026,,False
+96,,-10000,Ăn uống,Tiền mặt,VND,29/05/2026,,False
+97,,-86000,Ăn uống,ZaloPay,VND,29/05/2026,,False
+98,,-30000,Ăn uống,ZaloPay,VND,29/05/2026,,False
+99,,-295000,Sức khỏe,ZaloPay,VND,29/05/2026,,False
+100,,300000,Đi vay,ZaloPay,VND,29/05/2026,,True
+101,,-50000,Di chuyển,Tiền mặt,VND,28/05/2026,,False
+102,,-72000,Giải trí,ZaloPay,VND,28/05/2026,,False
+103,,-90000,Ăn uống,ZaloPay,VND,27/05/2026,,False
+104,,-40000,Sức khỏe,ZaloPay,VND,27/05/2026,,False
+105,,-25000,Ăn uống,ZaloPay,VND,26/05/2026,,False
+106,,-89000,Ăn uống,ZaloPay,VND,25/05/2026,,False
+107,,-70000,Gia đình,ZaloPay,VND,25/05/2026,,False
+108,,50000,Thu nhập khác,ZaloPay,VND,25/05/2026,,False
+109,,120000,Thu nhập khác,Tiền mặt,VND,24/05/2026,,False
+110,,-20000,Ăn uống,ZaloPay,VND,24/05/2026,,False
+111,,-25000,Ăn uống,ZaloPay,VND,24/05/2026,,False
+112,,-50000,Di chuyển,ZaloPay,VND,24/05/2026,,False
+113,,-118000,Ăn ngoài,ZaloPay,VND,24/05/2026,,False
+114,,-10000,Ăn uống,Tiền mặt,VND,23/05/2026,,False
+115,,120000,Thu nhập khác,Tiền mặt,VND,23/05/2026,,False
+116,,-55000,Ăn uống,ZaloPay,VND,23/05/2026,,False
+117,,-120000,Gia đình,ZaloPay,VND,23/05/2026,,False
+118,,-60000,Ăn uống,ZaloPay,VND,22/05/2026,,False
+119,,-48000,Ăn uống,ZaloPay,VND,21/05/2026,,False
+120,,-10000,Ăn uống,Tiền mặt,VND,20/05/2026,,False
+121,,-50000,Di chuyển,Tiền mặt,VND,20/05/2026,,False
+122,,-20000,Ăn uống,ZaloPay,VND,20/05/2026,,False
+123,,-200000,Quà tặng & Quyên góp,ZaloPay,VND,20/05/2026,,False
+124,,-22000,Ăn uống,ZaloPay,VND,19/05/2026,,False
+125,,-72000,Ăn uống,ZaloPay,VND,18/05/2026,,False
+126,,-25000,Ăn uống,ZaloPay,VND,18/05/2026,,False
+127,,-20000,Ăn uống,ZaloPay,VND,18/05/2026,,False
+128,,-200000,Đầu tư,ZaloPay,VND,18/05/2026,,False
+129,,-25000,Ăn uống,Tiền mặt,VND,17/05/2026,,False
+130,,-50000,Di chuyển,Tiền mặt,VND,16/05/2026,,False
+131,,-235000,Ăn uống,ZaloPay,VND,16/05/2026,,False
+132,,-50000,Giải trí,ZaloPay,VND,16/05/2026,,False
+133,,-80000,Quà tặng & Quyên góp,ZaloPay,VND,15/05/2026,,False
+134,,-50000,Di chuyển,Tiền mặt,VND,14/05/2026,,False
+135,,-62000,Ăn uống,ZaloPay,VND,14/05/2026,,False
+136,,-107000,Ăn ngoài,ZaloPay,VND,14/05/2026,,False
+137,,-17000,Ăn uống,Tiền mặt,VND,13/05/2026,,False
+138,,-20000,Ăn uống,ZaloPay,VND,13/05/2026,,False
+139,,-75000,Mua sắm,ZaloPay,VND,13/05/2026,,False
+140,,-25000,Ăn uống,Tiền mặt,VND,12/05/2026,,False
+141,,-20000,Ăn uống,ZaloPay,VND,12/05/2026,,False
+142,,-50000,Di chuyển,Tiền mặt,VND,11/05/2026,,False
+143,,-30000,Ăn uống,ZaloPay,VND,11/05/2026,,False
+144,,-150000,Quà tặng & Quyên góp,ZaloPay,VND,10/05/2026,,False
+145,,-142000,Ăn ngoài,ZaloPay,VND,10/05/2026,,False
+146,,-110000,Vệ sinh cá nhân,ZaloPay,VND,10/05/2026,,False
+147,,-28400,Ăn uống,ZaloPay,VND,09/05/2026,,False
+148,,-71000,Ăn uống,ZaloPay,VND,08/05/2026,,False
+149,,-50000,Di chuyển,ZaloPay,VND,08/05/2026,,False
+150,,-50000,Di chuyển,Tiền mặt,VND,07/05/2026,,False
+151,,-50000,Ăn uống,ZaloPay,VND,07/05/2026,,False
+152,,-45000,Ăn uống,ZaloPay,VND,06/05/2026,,False
+153,,-500000,Bảo hiểm,ZaloPay,VND,06/05/2026,,False
+154,,-10000000,Gia đình,Tiền mặt,VND,05/05/2026,,False
+155,Điều chỉnh số dư,-10000,Các chi phí khác,Tiền mặt,VND,05/05/2026,,False
+156,Gửi đến ZaloPay,-3000000,Tiền chuyển đi,Tiền mặt,VND,05/05/2026,,True
+157,,9300000,Lương,Tiền mặt,VND,05/05/2026,,False
+158,Nhận tiền từ Quỹ Khẩn Cấp,4000000,Tiền chuyển đến,Tiền mặt,VND,05/05/2026,,True
+159,,-83000,Giải trí,ZaloPay,VND,05/05/2026,,False
+160,Điều chỉnh số dư,5050,Thu nhập khác,ZaloPay,VND,05/05/2026,,False
+161,Nhận tiền từ Tiền mặt,3000000,Tiền chuyển đến,ZaloPay,VND,05/05/2026,,True
+162,Gửi đến Tiền mặt,-4000000,Tiền chuyển đi,Quỹ Khẩn Cấp,VND,05/05/2026,,True
+163,,-73000,Ăn uống,ZaloPay,VND,04/05/2026,,False
+164,,-17000,Quà tặng & Quyên góp,Tiền mặt,VND,03/05/2026,,False
+165,,-60000,Ăn ngoài,Tiền mặt,VND,03/05/2026,,False
+166,,-100000,Ăn ngoài,ZaloPay,VND,03/05/2026,,False
+167,,-48000,Ăn uống,ZaloPay,VND,02/05/2026,,False
+168,,-50000,Di chuyển,ZaloPay,VND,02/05/2026,,False
+169,,-57000,Ăn uống,ZaloPay,VND,01/05/2026,,False
+170,,-100000,Giải trí,ZaloPay,VND,01/05/2026,,False
+171,,-25000,Ăn uống,ZaloPay,VND,30/04/2026,,False
+172,,-100000,Giải trí,ZaloPay,VND,30/04/2026,,False
+173,,-45000,Ăn uống,ZaloPay,VND,29/04/2026,,False
+174,,-60000,Hoá đơn internet,ZaloPay,VND,29/04/2026,,False
+175,,-30000,Ăn uống,ZaloPay,VND,28/04/2026,,False
+176,,-50000,Quà tặng & Quyên góp,ZaloPay,VND,28/04/2026,,False
+177,,-125000,Ăn uống,ZaloPay,VND,27/04/2026,,False
+178,Nhận tiền từ ZaloPay,3000,Tiền chuyển đến,Tiền mặt,VND,26/04/2026,,True
+179,,-24000,Ăn uống,ZaloPay,VND,26/04/2026,,False
+180,,-22000,Ăn uống,ZaloPay,VND,26/04/2026,,False
+181,Gửi đến Tiền mặt,-3000,Tiền chuyển đi,ZaloPay,VND,26/04/2026,,True
+182,,-240000,Ăn ngoài,ZaloPay,VND,26/04/2026,,False
+183,,-30000,Ăn uống,ZaloPay,VND,25/04/2026,,False
+184,,-50000,Quà tặng & Quyên góp,ZaloPay,VND,25/04/2026,,False
+185,,-40000,Ăn uống,Tiền mặt,VND,24/04/2026,,False
+186,,-20000,Ăn uống,Tiền mặt,VND,23/04/2026,,False
+187,,-87000,Di chuyển,Tiền mặt,VND,23/04/2026,,False
+188,,-159000,Sức khỏe,ZaloPay,VND,23/04/2026,,False
+189,,-25000,Ăn uống,Tiền mặt,VND,22/04/2026,,False
+190,,-66000,Ăn uống,ZaloPay,VND,22/04/2026,,False
+191,,-60000,Ăn uống,Tiền mặt,VND,21/04/2026,,False
+192,,-25000,Ăn uống,Tiền mặt,VND,21/04/2026,,False
+193,,-25000,Ăn uống,Tiền mặt,VND,20/04/2026,,False
+194,Gửi đến ZaloPay,-2500000,Tiền chuyển đi,Tiền mặt,VND,20/04/2026,,True
+195,Nhận tiền từ ZaloPay,676000,Tiền chuyển đến,Tiền mặt,VND,20/04/2026,,True
+196,,-20000,Ăn uống,ZaloPay,VND,20/04/2026,,False
+197,Gửi đến Quỹ Khẩn Cấp,-1500000,Tiền chuyển đi,ZaloPay,VND,20/04/2026,,True
+198,Gửi đến Tiền mặt,-676000,Tiền chuyển đi,ZaloPay,VND,20/04/2026,,True
+199,Nhận tiền từ Tiền mặt,2500000,Tiền chuyển đến,ZaloPay,VND,20/04/2026,,True
+200,,-40000,Vệ sinh cá nhân,Tiền mặt,VND,20/04/2026,,False
+201,Nhận tiền từ ZaloPay,1500000,Tiền chuyển đến,Quỹ Khẩn Cấp,VND,20/04/2026,,True
+202,,-10000,Ăn uống,Tiền mặt,VND,19/04/2026,,False
+203,,-35000,Ăn uống,Tiền mặt,VND,19/04/2026,,False
+204,,-2000,Di chuyển,Tiền mặt,VND,19/04/2026,,False
+205,Điều chỉnh số dư,-164000,Các chi phí khác,Tiền mặt,VND,19/04/2026,,False
+206,Nhận tiền từ Quỹ Khẩn Cấp,3000000,Tiền chuyển đến,Tiền mặt,VND,19/04/2026,,True
+207,,-20000,Ăn uống,ZaloPay,VND,19/04/2026,,False
+208,Em Yêu trả nợ,1000000,Thu nợ,ZaloPay,VND,19/04/2026,,True
+209,Điều chỉnh số dư,56137,Thu nhập khác,ZaloPay,VND,19/04/2026,,False
+210,Điều chỉnh số dư,55576,Thu nhập khác,Chứng Khoáng,VND,19/04/2026,,False
+211,Điều chỉnh số dư,-88378,Các chi phí khác,Chứng Chỉ Quỹ,VND,19/04/2026,,False
+212,Gửi đến Tiền mặt,-3000000,Tiền chuyển đi,Quỹ Khẩn Cấp,VND,19/04/2026,,True
+213,,-25000,Ăn uống,Tiền mặt,VND,18/04/2026,,False
+214,,200000,Thu nhập khác,Tiền mặt,VND,18/04/2026,,False
+215,,-60000,Ăn uống,ZaloPay,VND,18/04/2026,,False
+216,,-25000,Ăn uống,Tiền mặt,VND,17/04/2026,,False
+217,,-53000,Ăn uống,ZaloPay,VND,17/04/2026,,False
+218,,-120000,Gia đình,ZaloPay,VND,17/04/2026,,False
+219,,-37000,Ăn uống,Tiền mặt,VND,16/04/2026,,False
+220,,-105000,Ăn ngoài,ZaloPay,VND,16/04/2026,,False
+221,,60000,Thu nhập khác,Tiền mặt,VND,15/04/2026,,False
+222,,-159000,Ăn uống,ZaloPay,VND,15/04/2026,,False
+223,,-20000,Hoá đơn internet,ZaloPay,VND,15/04/2026,,False
+224,,-14000,Di chuyển,ZaloPay,VND,15/04/2026,,False
+225,,-65000,Ăn uống,ZaloPay,VND,14/04/2026,,False
+226,,-48000,Các chi phí khác,ZaloPay,VND,14/04/2026,,False
+227,,-20000,Hoá đơn internet,ZaloPay,VND,13/04/2026,,False
+228,,-324000,Sức khỏe,ZaloPay,VND,13/04/2026,,False
+229,,-1000000,Sức khỏe,Tiền mặt,VND,12/04/2026,,False
+230,,-80000,Ăn uống,ZaloPay,VND,12/04/2026,,False
+231,,-15000,Hoá đơn internet,ZaloPay,VND,12/04/2026,,False
+232,,-17000,Ăn uống,Tiền mặt,VND,11/04/2026,,False
+233,,-90000,Di chuyển,Tiền mặt,VND,11/04/2026,,False
+234,,-95000,Ăn uống,ZaloPay,VND,11/04/2026,,False
+235,,-50000,Ăn uống,ZaloPay,VND,10/04/2026,,False
+236,,-60000,Quà tặng & Quyên góp,ZaloPay,VND,10/04/2026,,False
+237,,-110000,Vệ sinh cá nhân,ZaloPay,VND,10/04/2026,,False
+238,,-27000,Ăn uống,ZaloPay,VND,09/04/2026,,False
+239,,-8000,Hoá đơn internet,ZaloPay,VND,09/04/2026,,False
+240,,-47000,Ăn uống,ZaloPay,VND,08/04/2026,,False
+241,,-116000,Di chuyển,ZaloPay,VND,08/04/2026,,False
+242,,8221,Thu nhập khác,ZaloPay,VND,08/04/2026,,False
+243,,-18000,Ăn uống,ZaloPay,VND,07/04/2026,,False
+244,,-39000,Mua sắm,ZaloPay,VND,07/04/2026,,False
+245,,-50000,Di chuyển,Tiền mặt,VND,06/04/2026,,False
+246,,500000,Lương,Tiền mặt,VND,06/04/2026,,False
+247,,-67000,Ăn uống,ZaloPay,VND,06/04/2026,,False
+248,,-1000000,Gia đình,ZaloPay,VND,06/04/2026,,False
+249,Gửi đến Chứng Khoáng,-1000000,Tiền chuyển đi,ZaloPay,VND,06/04/2026,,True
+250,Gửi đến Quỹ Khẩn Cấp,-4500000,Tiền chuyển đi,ZaloPay,VND,06/04/2026,,True
+251,,-1000000,Cho vay,ZaloPay,VND,06/04/2026,,True
+252,,9800000,Lương,ZaloPay,VND,06/04/2026,,False
+253,Nhận tiền từ ZaloPay,1000000,Tiền chuyển đến,Chứng Khoáng,VND,06/04/2026,,True
+254,Nhận tiền từ ZaloPay,4500000,Tiền chuyển đến,Quỹ Khẩn Cấp,VND,06/04/2026,,True
+255,,-85000,Ăn uống,ZaloPay,VND,05/04/2026,,False
+256,,-113000,Ăn ngoài,ZaloPay,VND,05/04/2026,,False
+257,,-90000,Ăn uống,ZaloPay,VND,04/04/2026,,False
+258,,-41000,Ăn uống,ZaloPay,VND,03/04/2026,,False
+259,,-50000,Di chuyển,ZaloPay,VND,02/04/2026,,False
+260,,-45000,Ăn uống,ZaloPay,VND,01/04/2026,,False
+261,,-50000,Mua sắm,ZaloPay,VND,01/04/2026,,False
+262,,-80000,Giải trí,ZaloPay,VND,01/04/2026,,False
+263,,-40000,Ăn uống,ZaloPay,VND,31/03/2026,,False
+264,,-25000,Ăn uống,ZaloPay,VND,31/03/2026,,False
+265,,-20000,Ăn uống,ZaloPay,VND,30/03/2026,,False
+266,,-25000,Ăn uống,ZaloPay,VND,29/03/2026,,False
+267,,-50000,Di chuyển,ZaloPay,VND,29/03/2026,,False
+268,,-55000,Ăn ngoài,ZaloPay,VND,29/03/2026,,False
+269,,-14000,Ăn uống,ZaloPay,VND,28/03/2026,,False
+270,,-35000,Ăn uống,ZaloPay,VND,28/03/2026,,False
+271,,-30000,Ăn uống,ZaloPay,VND,27/03/2026,,False
+272,,-70000,Hoá đơn internet,ZaloPay,VND,27/03/2026,,False
+273,,-130000,Mua sắm,ZaloPay,VND,27/03/2026,,False
+274,,-20000,Ăn uống,ZaloPay,VND,26/03/2026,,False
+275,,-50000,Di chuyển,ZaloPay,VND,26/03/2026,,False
+276,,-204000,Ăn ngoài,ZaloPay,VND,26/03/2026,,False
+277,,-20000,Ăn uống,ZaloPay,VND,25/03/2026,,False
+278,,-36000,Ăn uống,ZaloPay,VND,25/03/2026,,False
+279,,-1500000,Khoảng lỗ,Crypto,VND,25/03/2026,,False
+280,,-25000,Ăn uống,ZaloPay,VND,24/03/2026,,False
+281,,-15000,Ăn uống,ZaloPay,VND,24/03/2026,,False
+282,,-12000,Ăn uống,ZaloPay,VND,23/03/2026,,False
+283,,-25000,Ăn uống,ZaloPay,VND,23/03/2026,,False
+284,,-15000,Quà tặng & Quyên góp,ZaloPay,VND,23/03/2026,,False
+285,,-65000,Ăn uống,ZaloPay,VND,22/03/2026,,False
+286,,-100000,Giải trí,ZaloPay,VND,22/03/2026,,False
+287,,-20000,Ăn uống,ZaloPay,VND,21/03/2026,,False
+288,,-45000,Ăn uống,ZaloPay,VND,21/03/2026,,False
+289,,-50000,Di chuyển,ZaloPay,VND,21/03/2026,,False
+290,,50000,Tiền chuyển đến,ZaloPay,VND,21/03/2026,,False
+291,,-15000,Ăn uống,ZaloPay,VND,20/03/2026,,False
+292,,-40000,Ăn uống,ZaloPay,VND,20/03/2026,,False
+293,,-50000,Ăn ngoài,ZaloPay,VND,20/03/2026,,False
+294,,-12000,Ăn uống,ZaloPay,VND,19/03/2026,,False
+295,,-25000,Ăn uống,ZaloPay,VND,19/03/2026,,False
+296,Điều chỉnh số dư,17000,Thu nhập khác,ZaloPay,VND,19/03/2026,,False
+297,,-70000,Ăn ngoài,ZaloPay,VND,19/03/2026,,False
+298,,-77000,Ăn uống,ZaloPay,VND,18/03/2026,,False
+299,,-73000,Ăn uống,ZaloPay,VND,17/03/2026,,False
+300,,-50000,Di chuyển,ZaloPay,VND,17/03/2026,,False
+301,,-20000,Ăn uống,ZaloPay,VND,16/03/2026,,False
+302,,-85000,Ăn ngoài,ZaloPay,VND,16/03/2026,,False
+303,,-185000,Ăn ngoài,ZaloPay,VND,16/03/2026,,False
+304,,-40000,Vệ sinh cá nhân,ZaloPay,VND,16/03/2026,,False
+305,,-70000,Ăn uống,ZaloPay,VND,15/03/2026,,False
+306,,-30000,Quà tặng & Quyên góp,ZaloPay,VND,15/03/2026,,False
+307,,-17000,Ăn uống,ZaloPay,VND,14/03/2026,,False
+308,,-40000,Ăn ngoài,ZaloPay,VND,14/03/2026,,False
+309,,-47000,Ăn uống,Tiền mặt,VND,13/03/2026,,False
+310,,-50000,Di chuyển,Tiền mặt,VND,13/03/2026,,False
+311,,-45000,Ăn uống,ZaloPay,VND,13/03/2026,,False
+312,,-81000,Sức khỏe,ZaloPay,VND,13/03/2026,,False
+313,Nhận tiền từ ZaloPay,50000,Tiền chuyển đến,Tiền mặt,VND,12/03/2026,,True
+314,,-20000,Ăn uống,ZaloPay,VND,12/03/2026,,False
+315,Gửi đến Tiền mặt,-50000,Tiền chuyển đi,ZaloPay,VND,12/03/2026,,True
+316,,-20000,Ăn uống,Tiền mặt,VND,11/03/2026,,False
+317,Nhận tiền từ ZaloPay,50000,Tiền chuyển đến,Tiền mặt,VND,11/03/2026,,True
+318,,-55000,Ăn uống,ZaloPay,VND,11/03/2026,,False
+319,,-35000,Quà tặng & Quyên góp,ZaloPay,VND,11/03/2026,,False
+320,Gửi đến Tiền mặt,-50000,Tiền chuyển đi,ZaloPay,VND,11/03/2026,,True
+321,,-20000,Ăn uống,Tiền mặt,VND,10/03/2026,,False
+322,,-4000,Di chuyển,Tiền mặt,VND,10/03/2026,,False
+323,,-25000,Ăn uống,ZaloPay,VND,10/03/2026,,False
+324,Điều chỉnh số dư,1807,Thu nhập khác,ZaloPay,VND,10/03/2026,,False
+325,,-118000,Ăn ngoài,ZaloPay,VND,10/03/2026,,False
+326,,-85565,Ăn ngoài,ZaloPay,VND,10/03/2026,,False
+327,,-50000,Di chuyển,Tiền mặt,VND,09/03/2026,,False
+328,,-25000,Ăn uống,Tiền mặt,VND,08/03/2026,,False
+329,,-110000,Vệ sinh cá nhân,ZaloPay,VND,08/03/2026,,False
+330,,-50000,Di chuyển,Tiền mặt,VND,07/03/2026,,False
+331,,-149000,Quà tặng & Quyên góp,Tiền mặt,VND,07/03/2026,,False
+332,,-86000,Mua sắm,ZaloPay,VND,07/03/2026,,False
+333,,70000,Thu nhập khác,ZaloPay,VND,07/03/2026,,False
+334,,20000,Thu nhập khác,ZaloPay,VND,07/03/2026,,False
+335,,-29000,Ăn uống,Tiền mặt,VND,06/03/2026,,False
+336,,20000,Thu nhập khác,ZaloPay,VND,06/03/2026,,False
+337,,-20000,Ăn ngoài,Tiền mặt,VND,06/03/2026,,False
+338,,-40000,Ăn ngoài,Tiền mặt,VND,06/03/2026,,False
+339,,-50000,Ăn ngoài,Tiền mặt,VND,06/03/2026,,False
+340,,-32000,Ăn uống,Tiền mặt,VND,05/03/2026,,False
+341,,-20000,Ăn uống,Tiền mặt,VND,05/03/2026,,False
+342,Gửi đến ZaloPay,-9000000,Tiền chuyển đi,Tiền mặt,VND,05/03/2026,,True
+343,,9300000,Lương,Tiền mặt,VND,05/03/2026,,False
+344,,-21337,Ăn uống,ZaloPay,VND,05/03/2026,,False
+345,,-1000000,Gia đình,ZaloPay,VND,05/03/2026,,False
+346,,-50000,Quà tặng & Quyên góp,ZaloPay,VND,05/03/2026,,False
+347,Gửi đến Quỹ Khẩn Cấp,-1000000,Tiền chuyển đi,ZaloPay,VND,05/03/2026,,True
+348,Gửi đến Chứng Chỉ Quỹ,-1000000,Tiền chuyển đi,ZaloPay,VND,05/03/2026,,True
+349,Gửi đến Chứng Khoáng,-1000000,Tiền chuyển đi,ZaloPay,VND,05/03/2026,,True
+350,Gửi đến Crypto,-1500000,Tiền chuyển đi,ZaloPay,VND,05/03/2026,,True
+351,Nhận tiền từ Tiền mặt,9000000,Tiền chuyển đến,ZaloPay,VND,05/03/2026,,True
+352,Nhận tiền từ ZaloPay,1000000,Tiền chuyển đến,Chứng Khoáng,VND,05/03/2026,,True
+353,Nhận tiền từ ZaloPay,1500000,Tiền chuyển đến,Crypto,VND,05/03/2026,,True
+354,Điều chỉnh số dư,10035538,Thu nhập khác,Chứng Chỉ Quỹ,VND,05/03/2026,,False
+355,Nhận tiền từ ZaloPay,1000000,Tiền chuyển đến,Chứng Chỉ Quỹ,VND,05/03/2026,,True
+356,Nhận tiền từ ZaloPay,1000000,Tiền chuyển đến,Quỹ Khẩn Cấp,VND,05/03/2026,,True
+357,,-50000,Di chuyển,Tiền mặt,VND,04/03/2026,,False
+358,Gửi đến ZaloPay,-300000,Tiền chuyển đi,Tiền mặt,VND,04/03/2026,,True
+359,Gửi đến ViettelPay,-500000,Tiền chuyển đi,Tiền mặt,VND,04/03/2026,,True
+360,Trả cho Minh,-82000,Trả nợ,Tiền mặt,VND,04/03/2026,,True
+361,Nhận tiền từ Tiền mặt,300000,Tiền chuyển đến,ZaloPay,VND,04/03/2026,,True
+362,,-30000,Ăn ngoài,Tiền mặt,VND,04/03/2026,,False
+363,,-15000,Ăn uống,Tiền mặt,VND,03/03/2026,,False
+364,,82000,Đi vay,Tiền mặt,VND,03/03/2026,,True
+365,,-119631,Mua sắm,ZaloPay,VND,03/03/2026,,False
+366,,-83000,Giải trí,ZaloPay,VND,03/03/2026,,False
+367,Trả cho Em Yêu,-300000,Trả nợ,ZaloPay,VND,03/03/2026,,True
+368,,-142000,Ăn ngoài,Tiền mặt,VND,03/03/2026,,False
+369,,-20000,Ăn uống,Tiền mặt,VND,02/03/2026,,False
+370,Điều chỉnh số dư,3000,Tiền chuyển đến,Tiền mặt,VND,02/03/2026,,True
+371,,-174240,Quà tặng & Quyên góp,ZaloPay,VND,02/03/2026,,False
+372,,300000,Đi vay,ZaloPay,VND,02/03/2026,,False
+373,,-37000,Ăn ngoài,Tiền mặt,VND,02/03/2026,,False
+374,,-20000,Ăn uống,Tiền mặt,VND,01/03/2026,,False
+375,Nhận tiền từ ViettelPay,184100,Tiền chuyển đến,ZaloPay,VND,01/03/2026,,True
+376,,-45000,Ăn ngoài,Tiền mặt,VND,01/03/2026,,False
+377,,-200000,Hương hỏa,ZaloPay,VND,01/03/2026,,False
+378,,-30000,Ăn ngoài,Tiền mặt,VND,28/02/2026,,False
+379,,-20000,Ăn uống,Tiền mặt,VND,27/02/2026,,False
+380,,-50000,Di chuyển,Tiền mặt,VND,27/02/2026,,False
+381,,-11000,Giải trí,Tiền mặt,VND,26/02/2026,,False
+382,,-70000,Hoá đơn internet,ZaloPay,VND,26/02/2026,,False
+383,,-55000,Ăn ngoài,Tiền mặt,VND,26/02/2026,,False
+384,,-15000,Ăn uống,Tiền mặt,VND,24/02/2026,,False
+385,,-317000,Sức khỏe,Tiền mặt,VND,24/02/2026,,False
+386,,-60000,Ăn ngoài,Tiền mặt,VND,24/02/2026,,False
+387,Điều chỉnh số dư,1925000,Lương,Tiền mặt,VND,23/02/2026,,False
+388,Điều chỉnh số dư,107866,Lương,ZaloPay,VND,23/02/2026,,False

@@ -263,6 +263,16 @@ fun AddEditTransactionScreen(
     var showCategoryDialog by remember { mutableStateOf(false) }
     var showTransferWalletDialog by remember { mutableStateOf(false) }
 
+    var isKeyboardVisible by remember { mutableStateOf(false) }
+    var expr by remember { mutableStateOf(amount) }
+
+    // Đồng bộ lại expr khi amount từ viewModel thay đổi bên ngoài
+    LaunchedEffect(amount) {
+        if (amount != expr) {
+            expr = amount
+        }
+    }
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -273,6 +283,46 @@ fun AddEditTransactionScreen(
                     }
                 }
             )
+        },
+        bottomBar = {
+            if (isKeyboardVisible) {
+                CustomCalculatorKeyboard(
+                    onKeyPress = { key ->
+                        if (expr == "0" || expr.isEmpty()) {
+                            expr = if (key != "+" && key != "-" && key != "*" && key != "/") key else "0$key"
+                        } else {
+                            // Chặn viết liên tiếp các phép toán
+                            val lastChar = expr.lastOrNull()
+                            if (lastChar != null && lastChar in listOf('+', '-', '*', '/') && key in listOf("+", "-", "*", "/")) {
+                                expr = expr.dropLast(1) + key
+                            } else {
+                                expr += key
+                            }
+                        }
+                        viewModel.onAmountChange(expr)
+                    },
+                    onBackspace = {
+                        if (expr.isNotEmpty()) {
+                            expr = expr.dropLast(1)
+                        }
+                        viewModel.onAmountChange(expr.ifEmpty { "0" })
+                    },
+                    onClear = {
+                        expr = "0"
+                        viewModel.onAmountChange("0")
+                    },
+                    onDone = {
+                        val result = evaluateMathExpression(expr)
+                        expr = if (result % 1 == 0.0) {
+                            result.toLong().toString()
+                        } else {
+                            result.toString()
+                        }
+                        viewModel.onAmountChange(expr)
+                        isKeyboardVisible = false
+                    }
+                )
+            }
         }
     ) { paddingValues ->
         Column(
@@ -282,16 +332,28 @@ fun AddEditTransactionScreen(
                 .padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            // Nhập số tiền lớn
-            OutlinedTextField(
-                value = amount,
-                onValueChange = { viewModel.onAmountChange(it) },
-                label = { Text("Số tiền") },
-                placeholder = { Text("0") },
-                textStyle = LocalTextStyle.current.copy(fontSize = 24.sp, fontWeight = FontWeight.Bold, color = ZaloBlue),
-                modifier = Modifier.fillMaxWidth(),
-                singleLine = true
-            )
+            // Nhập số tiền lớn (Click hiện Custom Keyboard, chặn phím ảo hệ thống)
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clickable { isKeyboardVisible = true }
+            ) {
+                OutlinedTextField(
+                    value = expr,
+                    onValueChange = {},
+                    readOnly = true,
+                    enabled = false, // Vô hiệu hóa để click chuyển sang Box nhận sự kiện
+                    label = { Text("Số tiền") },
+                    placeholder = { Text("0") },
+                    colors = OutlinedTextFieldDefaults.colors(
+                        disabledTextColor = ZaloBlue,
+                        disabledBorderColor = MaterialTheme.colorScheme.outline,
+                        disabledLabelColor = MaterialTheme.colorScheme.onSurfaceVariant
+                    ),
+                    textStyle = LocalTextStyle.current.copy(fontSize = 24.sp, fontWeight = FontWeight.Bold),
+                    modifier = Modifier.fillMaxWidth()
+                )
+            }
 
             // Nhập tiêu đề / Ghi chú
             OutlinedTextField(
@@ -571,5 +633,141 @@ fun ReportScreen(
                 }
             }
         }
+    }
+}
+
+// --- BÀN PHÍM TÙY CHỈNH KIỂU MONEY LOVER ---
+@Composable
+fun CustomCalculatorKeyboard(
+    onKeyPress: (String) -> Unit,
+    onBackspace: () -> Unit,
+    onClear: () -> Unit,
+    onDone: () -> Unit
+) {
+    val keys = listOf(
+        listOf("7", "8", "9", "/"),
+        listOf("4", "5", "6", "*"),
+        listOf("1", "2", "3", "-"),
+        listOf("0", "000", "⌫", "+"),
+        listOf("C", "✓")
+    )
+
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(MaterialTheme.colorScheme.surfaceVariant)
+            .padding(8.dp),
+        verticalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
+        keys.forEach { row ->
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                row.forEach { key ->
+                    val weight = if (key == "✓") 3f else 1f
+                    val containerColor = if (key == "✓") ZaloBlue else if (key in listOf("+", "-", "*", "/", "⌫", "C")) MaterialTheme.colorScheme.primaryContainer else MaterialTheme.colorScheme.surface
+                    val contentColor = if (key == "✓") Color.White else MaterialTheme.colorScheme.onSurface
+
+                    Button(
+                        onClick = {
+                            when (key) {
+                                "⌫" -> onBackspace()
+                                "C" -> onClear()
+                                "✓" -> onDone()
+                                else -> onKeyPress(key)
+                            }
+                        },
+                        modifier = Modifier
+                            .weight(weight)
+                            .height(54.dp),
+                        shape = RoundedCornerShape(8.dp),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = containerColor,
+                            contentColor = contentColor
+                        ),
+                        contentPadding = PaddingValues(0.dp)
+                    ) {
+                        Text(text = key, fontSize = 20.sp, fontWeight = FontWeight.Bold)
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Bộ tính toán biểu thức toán học đệ quy
+fun evaluateMathExpression(expr: String): Double {
+    if (expr.isBlank()) return 0.0
+    val clean = expr.replace(",", "").trim()
+    
+    return try {
+        object : Any() {
+            var pos = -1
+            var ch = 0
+
+            fun nextChar() {
+                ch = if (++pos < clean.length) clean[pos].code else -1
+            }
+
+            fun eat(charToEat: Int): Boolean {
+                while (ch == ' '.code) nextChar()
+                if (ch == charToEat) {
+                    nextChar()
+                    return true
+                }
+                return false
+            }
+
+            fun parse(): Double {
+                nextChar()
+                val x = parseExpression()
+                if (pos < clean.length) throw RuntimeException("Unexpected: " + ch.toChar())
+                return x
+            }
+
+            fun parseExpression(): Double {
+                var x = parseTerm()
+                while (true) {
+                    if (eat('+'.code)) x += parseTerm()
+                    else if (eat('-'.code)) x -= parseTerm()
+                    else break
+                }
+                return x
+            }
+
+            fun parseTerm(): Double {
+                var x = parseFactor()
+                while (true) {
+                    if (eat('*'.code)) x *= parseFactor()
+                    else if (eat('/'.code)) {
+                        val divisor = parseFactor()
+                        x /= if (divisor == 0.0) 1.0 else divisor
+                    }
+                    else break
+                }
+                return x
+            }
+
+            fun parseFactor(): Double {
+                if (eat('+'.code)) return parseFactor()
+                if (eat('-'.code)) return -parseFactor()
+
+                var x: Double
+                val startPos = this.pos
+                if (eat('('.code)) {
+                    x = parseExpression()
+                    eat(')'.code)
+                } else if (ch >= '0'.code && ch <= '9'.code || ch == '.'.code) {
+                    while (ch >= '0'.code && ch <= '9'.code || ch == '.'.code) nextChar()
+                    x = clean.substring(startPos, this.pos).toDouble()
+                } else {
+                    throw RuntimeException("Unexpected: " + ch.toChar())
+                }
+                return x
+            }
+        }.parse()
+    } catch (e: Exception) {
+        0.0
     }
 }
