@@ -19,6 +19,12 @@ import androidx.lifecycle.lifecycleScope
 import com.example.data.*
 import com.example.ui.*
 import com.example.ui.theme.ZaloFinanceTheme
+import com.example.ui.theme.ZaloBlue
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.graphics.Color
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob

@@ -92,6 +92,7 @@ class TransactionRepositoryImpl(
                             walletDao.updateBalance(destId, transaction.amount)
                         }
                     }
+                    else -> {}
                 }
             }
             id
@@ -114,6 +115,7 @@ class TransactionRepositoryImpl(
                                 walletDao.updateBalance(destId, -old.amount)
                             }
                         }
+                        else -> {}
                     }
                 }
             }
@@ -133,6 +135,7 @@ class TransactionRepositoryImpl(
                             walletDao.updateBalance(destId, transaction.amount)
                         }
                     }
+                    else -> {}
                 }
             }
         }
@@ -152,6 +155,7 @@ class TransactionRepositoryImpl(
                             walletDao.updateBalance(destId, -transaction.amount)
                         }
                     }
+                    else -> {}
                 }
             }
             transactionDao.deleteTransaction(transaction)
