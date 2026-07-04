@@ -1,5 +1,7 @@
 package com.example.ui
 
+import java.io.InputStream
+
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.data.*
@@ -69,6 +71,30 @@ class TransactionListViewModel(
     private fun timestampToDateString(timestamp: Long): String {
         val cal = Calendar.getInstance().apply { timeInMillis = timestamp }
         return String.format("%02d/%02d/%04d", cal.get(Calendar.DAY_OF_MONTH), cal.get(Calendar.MONTH) + 1, cal.get(Calendar.YEAR))
+    }
+
+    private val _importState = MutableStateFlow<String>("IDLE") // IDLE, LOADING, SUCCESS, ERROR
+    val importState: StateFlow<String> = _importState.asStateFlow()
+
+    fun importFromCsv(inputStream: InputStream) {
+        viewModelScope.launch {
+            _importState.value = "LOADING"
+            try {
+                val dtoList = CsvParser.parse(inputStream)
+                if (dtoList.isNotEmpty()) {
+                    transactionRepository.importTransactionsFromCsv(dtoList)
+                    _importState.value = "SUCCESS"
+                } else {
+                    _importState.value = "ERROR"
+                }
+            } catch (e: Exception) {
+                _importState.value = "ERROR"
+            }
+        }
+    }
+
+    fun resetImportState() {
+        _importState.value = "IDLE"
     }
 }
 

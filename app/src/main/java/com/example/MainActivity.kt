@@ -25,6 +25,10 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.graphics.Color
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.ui.platform.LocalContext
+import java.io.InputStream
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -67,6 +71,8 @@ class MainActivity : ComponentActivity() {
                 val reportViewModel = remember {
                     ReportViewModel(transactionRepository, categoryRepository)
                 }
+
+                val importState by listViewModel.importState.collectAsState()
 
                 if (currentScreen == "add") {
                     AddEditTransactionScreen(
@@ -113,7 +119,10 @@ class MainActivity : ComponentActivity() {
                                 "budgets" -> BudgetScreen(viewModel = budgetViewModel)
                                 "reports" -> ReportScreen(viewModel = reportViewModel)
                                 "settings" -> SettingsScreen(
-                                    onEnableSyncClick = { checkAndRequestNotificationPermission() }
+                                    onEnableSyncClick = { checkAndRequestNotificationPermission() },
+                                    importState = importState,
+                                    onImportClick = { stream -> listViewModel.importFromCsv(stream) },
+                                    onResetImportState = { listViewModel.resetImportState() }
                                 )
                             }
                         }
@@ -142,8 +151,27 @@ class MainActivity : ComponentActivity() {
 // --- MÀN HÌNH ĐỒNG BỘ CÀI ĐẶT ---
 @Composable
 fun SettingsScreen(
-    onEnableSyncClick: () -> Unit
+    onEnableSyncClick: () -> Unit,
+    importState: String,
+    onImportClick: (InputStream) -> Unit,
+    onResetImportState: () -> Unit
 ) {
+    val context = LocalContext.current
+    val launcher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.GetContent()
+    ) { uri ->
+        uri?.let {
+            try {
+                val inputStream = context.contentResolver.openInputStream(it)
+                if (inputStream != null) {
+                    onImportClick(inputStream)
+                }
+            } catch (e: Exception) {
+                // Xử lý lỗi mở stream nếu có
+            }
+        }
+    }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -164,6 +192,69 @@ fun SettingsScreen(
             colors = ButtonDefaults.buttonColors(containerColor = ZaloBlue)
         ) {
             Text("Bật quyền đọc thông báo ZaloPay")
+        }
+
+        Spacer(modifier = Modifier.height(32.dp))
+        HorizontalDivider()
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Text(text = "Nhập dữ liệu cũ", fontWeight = FontWeight.Bold, fontSize = 20.sp)
+        Spacer(modifier = Modifier.height(16.dp))
+        Text(
+            text = "Bạn có thể chuyển dữ liệu lịch sử từ Money Lover sang ZaloFinance bằng cách chọn tệp CSV đã xuất từ Money Lover.",
+            color = Color.Gray,
+            fontSize = 14.sp
+        )
+        Spacer(modifier = Modifier.height(16.dp))
+        Button(
+            onClick = { launcher.launch("*/*") }, // Chọn file bất kỳ để hỗ trợ mọi kiểu đuôi CSV
+            colors = ButtonDefaults.buttonColors(containerColor = GrowthGreen)
+        ) {
+            Text("Nhập tệp CSV từ Money Lover")
+        }
+    }
+
+    // Hiển thị trạng thái Import dữ liệu
+    when (importState) {
+        "LOADING" -> {
+            AlertDialog(
+                onDismissRequest = {},
+                title = { Text("Đang xử lý") },
+                text = {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(16.dp)
+                    ) {
+                        CircularProgressIndicator(color = ZaloBlue)
+                        Text("Đang nhập dữ liệu giao dịch từ Money Lover...")
+                    }
+                },
+                confirmButton = {}
+            )
+        }
+        "SUCCESS" -> {
+            AlertDialog(
+                onDismissRequest = onResetImportState,
+                title = { Text("Thành công") },
+                text = { Text("Toàn bộ dữ liệu ví và giao dịch cũ đã được đồng bộ thành công vào ZaloFinance!") },
+                confirmButton = {
+                    Button(onClick = onResetImportState) {
+                        Text("Đóng")
+                    }
+                }
+            )
+        }
+        "ERROR" -> {
+            AlertDialog(
+                onDismissRequest = onResetImportState,
+                title = { Text("Thất bại") },
+                text = { Text("Không thể nhập dữ liệu. Vui lòng kiểm tra lại định dạng tệp CSV của bạn.") },
+                confirmButton = {
+                    Button(onClick = onResetImportState) {
+                        Text("Đóng")
+                    }
+                }
+            )
         }
     }
 }

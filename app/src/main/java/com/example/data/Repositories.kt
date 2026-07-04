@@ -66,6 +66,7 @@ interface TransactionRepository {
     suspend fun insertTransaction(transaction: TransactionEntity): Long
     suspend fun updateTransaction(transaction: TransactionEntity)
     suspend fun deleteTransaction(transaction: TransactionEntity)
+    suspend fun importTransactionsFromCsv(dtoList: List<CsvTransactionDto>)
 }
 
 class TransactionRepositoryImpl(
@@ -143,7 +144,6 @@ class TransactionRepositoryImpl(
 
     override suspend fun deleteTransaction(transaction: TransactionEntity) {
         db.withTransaction {
-            // Đảo ngược số dư trước khi xóa
             val category = db.categoryDao().getCategoryById(transaction.categoryId)
             category?.let {
                 when (it.type) {
@@ -160,5 +160,74 @@ class TransactionRepositoryImpl(
             }
             transactionDao.deleteTransaction(transaction)
         }
+    }
+
+    override suspend fun importTransactionsFromCsv(dtoList: List<CsvTransactionDto>) {
+        db.withTransaction {
+            // Lấy danh sách ví và danh mục hiện tại để đối chiếu nhanh
+            // Để đơn giản và nhanh, chúng ta truy xuất trực tiếp qua DAO
+            val existingWallets = mutableMapOf<String, Long>()
+            val existingCategories = mutableMapOf<String, Long>()
+
+            for (dto in dtoList) {
+                // 1. Map ví
+                val walletName = dto.walletName.ifBlank { "Ví chung" }
+                var walletId = existingWallets[walletName]
+                if (walletId == null) {
+                    // Kiểm tra DB xem có chưa (fallback)
+                    // Ở đây insert và lấy ID
+                    val wId = db.walletDao().insertWallet(
+                        WalletEntity(name = walletName, balance = 0.0, icon = "ic_wallet_cash")
+                    )
+                    existingWallets[walletName] = wId
+                    walletId = wId
+                }
+
+                // 2. Map danh mục
+                val categoryName = dto.categoryName.ifBlank { "Chi tiêu khác" }
+                var categoryId = existingCategories[categoryName]
+                if (categoryId == null) {
+                    val cId = db.categoryDao().insertCategory(
+                        CategoryEntity(name = categoryName, type = "EXPENSE", icon = "ic_category_other")
+                    )
+                    existingCategories[categoryName] = cId
+                    categoryId = cId
+                }
+
+                // 3. Parse ngày
+                val timestamp = parseDateStringToTimestamp(dto.dateStr)
+
+                // 4. Ghi giao dịch
+                val transaction = TransactionEntity(
+                    walletId = walletId,
+                    categoryId = categoryId,
+                    amount = dto.amount,
+                    title = dto.title,
+                    timestamp = timestamp,
+                    source = "Money Lover"
+                )
+                db.transactionDao().insertTransaction(transaction)
+
+                // 5. Cập nhật số dư ví
+                db.walletDao().updateBalance(walletId, -dto.amount) // Mặc định là chi tiêu
+            }
+        }
+    }
+
+    private fun parseDateStringToTimestamp(dateStr: String): Long {
+        val formats = listOf(
+            java.text.SimpleDateFormat("yyyy-MM-dd", java.util.Locale.US),
+            java.text.SimpleDateFormat("dd/MM/yyyy", java.util.Locale.US),
+            java.text.SimpleDateFormat("yyyy/MM/dd", java.util.Locale.US)
+        )
+        for (format in formats) {
+            try {
+                val date = format.parse(dateStr)
+                if (date != null) return date.time
+            } catch (e: Exception) {
+                // Bỏ qua và thử format tiếp theo
+            }
+        }
+        return System.currentTimeMillis()
     }
 }
